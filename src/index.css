@@ -1,0 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&family=Lobster&display=swap');
+@import "tailwindcss";
+
+@layer base {
+  body {
+    font-family: 'Jost', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    width: 100%;
+    overflow-x: hidden;
+  }
+}
+
+/* Hide number input arrows (for Chrome, Safari, Edge, Opera) */
+.no-spinner::-webkit-outer-spin-button,
+.no-spinner::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Hide number input arrows (for Firefox) */
+.no-spinner[type=number] {
+  -moz-appearance: textfield;
+}
