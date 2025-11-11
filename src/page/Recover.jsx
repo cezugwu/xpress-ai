@@ -1,4 +1,4 @@
-import { Eye, EyeClosed } from 'lucide-react';
+import { Eye, EyeClosed, Moon } from 'lucide-react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import usePasswordField from '../config/hook';
@@ -6,16 +6,18 @@ import usePasswordField from '../config/hook';
 const Recover = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [dark, setDark] = useState(false);
   const navigate = useNavigate();
 
   const passwordField = usePasswordField(setShowPassword);
   const confirmPasswordField = usePasswordField(setShowConfirmPassword);
 
   return (
-    <div className="min-h-screen bg-gray-50 flex md:items-center justify-center px-4 py-24 sm:px-6 lg:px-8">
+    <div className={`min-h-screen flex md:items-center justify-center px-4 py-24 sm:px-6 lg:px-8 transition duration-100 ${dark ? 'bg-gray-50' : 'bg-gradient-to-r from-gray-950 via-gray-950 to-regal-blue'}`}>
+      <Moon className="fixed top-6 right-6 w-6 h-6 text-yellow-400 cursor-pointer select-none transition duration-100" onClick={() => setDark(!dark)} />
       <div className="w-full max-w-md">
         {/* Logo */}
-        <div className="relative -translate-x-1/2 left-1/2 w-fit flex items-center gap-1">
+        <div className="mb-4 relative -translate-x-1/2 left-1/2 w-fit flex items-center gap-1">
                 <svg 
                 xmlns="http://www.w3.org/2000/svg" 
                 className="w-17 h-17" 
@@ -33,33 +35,33 @@ const Recover = () => {
                     fill="url(#logoGradient)"
                 />
             </svg>
-            <h1 className="text-3xl font-medium text-gray-600">Press AI</h1>
+            <h1 className={`text-3xl font-medium transition duration-100 ${dark ? 'text-gray-600' : 'text-gray-400'}`}>Press AI</h1>
         </div>
 
-        <h2 className="text-2xl font-medium text-gray-600 my-3">Forgotten Password?</h2>
+        <h2 className={`text-2xl font-medium my-3 transition duration-100 ${dark ? 'text-gray-600' : 'text-gray-400'}`}>Forgotten Password?</h2>
 
         {/* Form */}
         <form className="space-y-4">
           {/* Email Field */}
           <div>
-            <label className="block font-medium text-gray-700 mb-2">
+            <label className={`block font-medium mb-2 transition duration-100 ${dark ? 'text-gray-700' : 'text-gray-100'}`}>
               Email
             </label>
             <input 
               type="email" 
               id="email" 
               placeholder="Enter email" 
-              className="w-full px-3 sm:px-4 py-3 border border-gray-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-transparent sm:text-base placeholder-gray-400"
+              className={`w-full px-3 sm:px-4 py-3 border border-gray-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-transparent sm:text-base placeholder-gray-400 transition duration-100 ${dark ? '' : 'text-gray-100 bg-black'}`}
             />
             <div className='grid grid-cols-2 gap-2 mt-2'>
-              <input type="number" placeholder="#Code"  className='no-spinner w-full px-3 sm:px-4 py-3 border border-gray-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-transparent sm:text-base placeholder-gray-400' />
-              <input type="submit" value='Send' className='text-gray-500 border border-gray-500 hover:border-none rounded-lg cursor-pointer hover:bg-gray-400 hover:text-gray-800 transition duration-300' />
+              <input type="number" placeholder="#Code"  className={`no-spinner w-full px-3 sm:px-4 py-3 border border-gray-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-transparent sm:text-base placeholder-gray-400 transition duration-100 ${dark ? '' : 'text-gray-100 bg-black'}`} />
+              <input type="submit" value='Send' className={`border border-gray-500 hover:border-none rounded-lg cursor-pointer hover:bg-gray-400 hover:text-gray-800 transition duration-100 ${dark ? 'text-gray-700' : 'text-gray-100'}`} />
             </div>
           </div>
 
           {/* Password Field */}
           <div>
-            <label className="block font-medium text-gray-700 mb-2 font-lobster">
+            <label className={`block font-medium mb-2 transition duration-100 ${dark ? 'text-gray-700' : 'text-gray-100'}`}>
               Enter New Password
             </label>
             <div className="relative" ref={passwordField.ref} onMouseLeave={passwordField.handleMouseLeave} onMouseEnter={passwordField.handleMouseEnter}>
@@ -67,7 +69,7 @@ const Recover = () => {
                 type={showPassword ? "text" : "password"} 
                 id="password" 
                 placeholder="Enter New password" 
-                className="w-full px-3 sm:px-4 py-3 border border-gray-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-transparent pr-10 sm:pr-12  sm:text-base placeholder-gray-400"
+                className={`w-full px-3 sm:px-4 py-3 border border-gray-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-transparent sm:text-base placeholder-gray-400 transition duration-100 ${dark ? '' : 'text-gray-100 bg-black'}`}
               />
               <button 
                 type="button" 
@@ -81,7 +83,7 @@ const Recover = () => {
 
           {/* Confirm New Password Field */}
           <div>
-            <label className="block font-medium text-gray-700 mb-2">
+            <label className={`block font-medium mb-2 transition duration-100 ${dark ? 'text-gray-700' : 'text-gray-100'}`}>
               Confirm New Password
             </label>
             <div className="relative" ref={confirmPasswordField.ref} onMouseLeave={confirmPasswordField.handleMouseLeave} onMouseEnter={confirmPasswordField.handleMouseEnter}>
@@ -89,7 +91,7 @@ const Recover = () => {
                 type={showConfirmPassword ? "text" : "password"} 
                 id="confirm-password" 
                 placeholder="Confirm new password" 
-                className="w-full px-3 sm:px-4 py-2.5 sm:py-3 border border-gray-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-transparent pr-10 sm:pr-12  sm:text-base placeholder-gray-400"
+                className={`w-full px-3 sm:px-4 py-3 border border-gray-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-transparent sm:text-base placeholder-gray-400 transition duration-100 ${dark ? '' : 'text-gray-100 bg-black'}`}
               />
               <button 
                 type="button" 
@@ -104,7 +106,7 @@ const Recover = () => {
           {/* Submit Button */}
           <button 
             type="submit" 
-            className="w-full bg-gradient-to-r from-blue-900 via-gray-500 to-green-600 text-white py-3 px-6 rounded-lg font-medium transition-all shadow-md  sm:text-base mt-2 cursor-pointer"
+            className={`w-full bg-gradient-to-r text-white py-3 px-6 rounded-lg font-medium transition-all shadow-md sm:text-base mt-2 cursor-pointer transition duration-100 ${dark ? 'from-blue-900 via-gray-500 to-green-600' : 'from-blue-950 via-blue-950 to-green-900 '}`}
           >
             Reset Password
           </button>
