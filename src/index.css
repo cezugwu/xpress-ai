@@ -22,3 +22,7 @@
 .no-spinner[type=number] {
   -moz-appearance: textfield;
 }
+
+@theme {
+  --color-regal-blue: #001a0f;
+}
